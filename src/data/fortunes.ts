@@ -1,0 +1,17 @@
+export const fortunes = [
+  'A beautiful, smart, and loving person will be coming into your life.',
+  'A fresh start will put you on your way.',
+  'Adventure can be real happiness.',
+  "All the preparation you've done will finally be paying off.",
+  'Be careful or you could fall for some tricks today.',
+  'Change is happening in your life, so go with the flow!',
+  'Good things come to those who wait.',
+  'Hard work pays off in the future, laziness pays off now.',
+  'Keep your feet on the ground, even though friends flatter you.',
+  'Nothing is impossible to a willing heart.',
+  'Someone is speaking well of you.',
+  'The greatest risk is not taking one.',
+  'You will have good luck and overcome many hardships.',
+  'Your ability to juggle many tasks will take you far.',
+  'Your hard work is about to pay off. Remember, dreams are for those who sleep.',
+]

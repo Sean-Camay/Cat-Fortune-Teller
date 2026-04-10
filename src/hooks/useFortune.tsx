@@ -1,9 +1,13 @@
 import { useCallback, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setCurrentFortune } from '../store/fortuneSlice'
+import { fortunes } from '../data/fortunes'
+import type { AppDispatch, RootState } from '../store'
 
-import axios from 'axios'
+// import axios from 'axios'
 
 export const useFortune = () => {
-  const [fortune, setFortune] = useState<string>('')
+  const dispatch = useDispatch<AppDispatch>()
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string>('')
 
@@ -11,19 +15,24 @@ export const useFortune = () => {
     setLoading(true)
     setError('')
 
-    const randomId = Math.floor(Math.random() * 100) + 1
     try {
-      const response = await axios.get(
-        `http://fortunecookieapi.com/v1/fortunes/${randomId}`,
-      )
-      setFortune(response.data.message)
+      // const response = await axios.get(
+      //   `http://fortunecookieapi.com/v1/fortunes/${randomId}`, // the endpoint is defunct
+      // )
+
+      const response = fortunes[Math.floor(Math.random() * fortunes.length)]
+      dispatch(setCurrentFortune(response))
     } catch (error) {
       console.error('Error fetching fortune:', error)
       setError('Failed to fetch fortune')
     } finally {
       setLoading(false)
     }
-  }, [])
+  }, [dispatch])
+
+  const fortune = useSelector(
+    (state: RootState) => state.fortune.currentFortune,
+  )
 
   return { fortune, getFortune, loading, error }
 }
