@@ -1,7 +1,9 @@
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { RootState } from '../../store'
-import { removeFortune } from '../../store/fortuneSlice'
+import { removeAllFortunes, removeFortune } from '../../store/fortuneSlice'
+
+import { Button } from '@mui/material'
 
 export const ListFortunes = () => {
   const dispatch = useDispatch()
@@ -12,14 +14,47 @@ export const ListFortunes = () => {
   const handleRemoveFortune = (fortune: string) => {
     dispatch(removeFortune(fortune))
   }
+
+  const handleRemoveAllFortunes = () => {
+    dispatch(removeAllFortunes())
+  }
+
+  const disabledButton = savedFortunes.length === 0
+
   return (
-    <div>
-      <h1>List of Saved Fortunes</h1>
+    <div className='flex flex-col items-center justify-center h-screen w-screen'>
+      <h1 className='m-4'>List of Saved Fortunes</h1>
+      <span style={{ cursor: disabledButton ? 'not-allowed' : 'pointer' }}>
+        <Button
+          variant='contained'
+          disabled={disabledButton}
+          onClick={handleRemoveAllFortunes}
+          sx={{
+            pointerEvents: 'none',
+            backgroundColor: 'white',
+            color: 'black',
+            marginBottom: '1em',
+          }}
+        >
+          Remove All Fortunes
+        </Button>
+      </span>
       <ul>
-        {savedFortunes.map((fortune: string, index: number) => (
+        {savedFortunes.map((fortune, index) => (
           <li key={index}>
-            {fortune}
-            <button onClick={() => handleRemoveFortune(fortune)}>Remove</button>
+            <span className='text-2xl'>{fortune}</span>
+            <Button
+              variant='contained'
+              size='small'
+              onClick={() => handleRemoveFortune(fortune)}
+              sx={{
+                marginLeft: '1em',
+                backgroundColor: 'black',
+                color: 'white',
+              }}
+            >
+              X
+            </Button>
           </li>
         ))}
       </ul>

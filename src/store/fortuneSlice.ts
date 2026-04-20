@@ -25,12 +25,16 @@ const fortuneSlice = createSlice({
         (fortune) => fortune !== action.payload,
       )
     },
-    removeFortunes: (state) => {
+    removeAllFortunes: (state) => {
       state.savedFortunes = []
     },
   },
 })
 
-export const { saveFortune, setCurrentFortune, removeFortune, removeFortunes } =
-  fortuneSlice.actions
+export const {
+  saveFortune,
+  setCurrentFortune,
+  removeFortune,
+  removeAllFortunes,
+} = fortuneSlice.actions
 export default fortuneSlice.reducer

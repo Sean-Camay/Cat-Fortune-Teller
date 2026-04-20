@@ -1,4 +1,4 @@
-import { MainNav } from '../../components/MainNav'
+import { MainNav } from '../../components/Main-Nav/MainNav'
 
 export const SettingsView = () => {
   return (

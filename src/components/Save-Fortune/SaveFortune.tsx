@@ -26,12 +26,11 @@ export const SaveFortune = () => {
 
   return (
     <div className='flex flex-col'>
-      <h1>Save Fortune</h1>
       <Button
         variant='text'
         size='small'
         onClick={handleSaveFortune}
-        sx={{ color: 'white', padding: '2em' }}
+        sx={{ color: 'white' }}
       >
         Save Fortune
       </Button>

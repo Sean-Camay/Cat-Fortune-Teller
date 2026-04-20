@@ -15,13 +15,9 @@ export const FortuneGenerator = ({ name = 'Guest' }: FortuneGeneratorProps) => {
   )
 
   return (
-    <div className='flex flex-col items-center justify-center p-4'>
-      <h1>Fortune Generator {name}</h1>
-      <Button
-        onClick={getFortune}
-        size='large'
-        sx={{ color: 'white', padding: '2em' }}
-      >
+    <div className='flex flex-col items-center justify-center p-4 h-screen w-screen'>
+      <h1>{name}</h1>
+      <Button onClick={getFortune} size='large' sx={{ color: 'white' }}>
         {currentFortune ? 'Get Another Fortune' : 'Get Fortune'}
       </Button>
       {loading && <p>Loading...</p>}
