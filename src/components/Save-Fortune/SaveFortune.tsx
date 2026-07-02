@@ -15,8 +15,8 @@ export const SaveFortune = () => {
 
   const handleSaveFortune = () => {
     if (!currentFortune) return
-    dispatch(saveFortune(currentFortune))
-    dispatch(setCurrentFortune(''))
+    dispatch(saveFortune({ text: currentFortune }))
+    dispatch(setCurrentFortune({ text: '' }))
     setOpenSnackbar(true)
   }
 

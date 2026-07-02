@@ -10,6 +10,9 @@ export const MainNav = () => {
       <Link className='hover:text-[#a11a1a]' to='/saved-fortunes'>
         Saved Fortunes
       </Link>
+      <Link className='hover:text-[#a11a1a]' to='/sandbox'>
+        Sandbox
+      </Link>
       <Link className='hover:text-[#a11a1a]' to='/settings'>
         <SettingsIcon />
       </Link>

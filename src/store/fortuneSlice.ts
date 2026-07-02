@@ -1,8 +1,13 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
+interface Fortune {
+  text: string
+  tone?: 'inspirational' | 'humorous' | 'mysterious' | 'cat-themed'
+}
+
 interface FortuneState {
   currentFortune: string
-  savedFortunes: string[]
+  savedFortunes: Fortune[]
 }
 
 const initialState: FortuneState = {
@@ -14,15 +19,18 @@ const fortuneSlice = createSlice({
   name: 'fortune',
   initialState,
   reducers: {
-    saveFortune: (state, action: PayloadAction<string>) => {
+    saveFortune: (state, action: PayloadAction<Fortune>) => {
       state.savedFortunes.push(action.payload)
     },
-    setCurrentFortune: (state, action: PayloadAction<string>) => {
+    setCurrentFortune: (state, action: PayloadAction<Fortune>) => {
+      state.currentFortune = action.payload.text
+    },
+    createFortune: (state, action: PayloadAction<string>) => {
       state.currentFortune = action.payload
     },
     removeFortune: (state, action: PayloadAction<string>) => {
       state.savedFortunes = state.savedFortunes.filter(
-        (fortune) => fortune !== action.payload,
+        (fortune) => fortune.text !== action.payload,
       )
     },
     removeAllFortunes: (state) => {
@@ -34,6 +42,7 @@ const fortuneSlice = createSlice({
 export const {
   saveFortune,
   setCurrentFortune,
+  createFortune,
   removeFortune,
   removeAllFortunes,
 } = fortuneSlice.actions
